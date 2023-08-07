@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { Footer } from '../components/Footer';
 
 import { Main } from '../components/Main';
+import { Header } from '../components/Header';
 
 export default function Home() {
   return (
@@ -13,6 +14,8 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <Header/>
 
       <Main page="index" />
 
