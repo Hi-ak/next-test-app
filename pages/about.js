@@ -17,7 +17,11 @@ export default function Home() {
       <main>
         
 
-        <Headline page="about" />
+        <Headline page="about" number={12} array={[1, 2, 3]} obj={{foo: "who", bar: "bar"}} isHeadline isAbout
+          code={<code>pages/about.js</code>}
+        >
+          <code>pages/index.js</code>
+        </Headline>
         <Links />
         
       </main>

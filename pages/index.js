@@ -14,7 +14,11 @@ export default function Home() {
       </Head>
 
       <main>
-        <Headline page="index" />
+        <Headline page="index" isAbout={false} code={<code>pages/index.js</code>}
+          onClick={() => {alert("onclick called");}}
+        >
+          <code>pages/index.js</code>
+        </Headline>
         <Links />
         
       </main>
