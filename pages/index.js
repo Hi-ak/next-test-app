@@ -1,9 +1,10 @@
+import styles from '../styles/Home.module.css';
+
 import Head from 'next/head';
 
 import { Footer } from '../components/Footer';
-import { Links } from '../components/Links';
-import styles from '../styles/Home.module.css';
-import { Headline } from '../components/Headline';
+
+import { Main } from '../components/Main';
 
 export default function Home() {
   return (
@@ -13,17 +14,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <Headline page="index" isAbout={false} code={<code>pages/index.js</code>}
-          onClick={() => {alert("onclick called");}}
-        >
-          <code>pages/index.js</code>
-        </Headline>
-        <Links />
-        
-      </main>
+      <Main page="index" />
 
-      <Footer/>
+      <Footer />
 
 
       <style jsx>{`

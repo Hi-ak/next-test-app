@@ -1,10 +1,8 @@
 import Head from 'next/head';
 import { Footer } from '../components/Footer'
 import styles from '../styles/Home.module.css';
-import { Links } from '../components/Links';
-import { Headline } from '../components/Headline';
 
-var list = [ "me", "you", "and", "who" , "?"];
+import { Main } from '../components/Main';
 
 export default function Home() {
   return (
@@ -14,17 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        
-
-        <Headline page="about" number={12} array={[1, 2, 3]} obj={{foo: "who", bar: "bar"}} isHeadline isAbout
-          code={<code>pages/about.js</code>}
-        >
-          <code>pages/index.js</code>
-        </Headline>
-        <Links />
-        
-      </main>
+      <Main page="about"/>
 
       <Footer />
 
