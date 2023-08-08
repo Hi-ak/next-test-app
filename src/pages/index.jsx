@@ -13,7 +13,10 @@ import { useCallback, useEffect, useState } from 'react';
 export default function Home() {
 
   const [count, setCount] = useState(1); //Arrayに [foo, setFoo] が入ってるだけ
+  const [text, setText] = useState("");
+  const [isShow, setIsShow] = useState(true);
 
+  console.log(text);
   
   //煩雑になる場合にはfunctionの中に書く。(useCallbackで再生成を避ける)
   const handleClick = useCallback((e) => {
@@ -29,6 +32,10 @@ export default function Home() {
     // alert(foo);
   }, [count, ]); //ここにcountを入れないとずっとuseCallbackの中身のcコードは変わらない
 
+  const handleDisplay = useCallback(() => {
+    setIsShow(isShow => !isShow);
+  }, []);
+
   //Homeがマウントされた時に実行される
   useEffect(() => {
     console.log(`mount: ${count}`);
@@ -43,6 +50,14 @@ export default function Home() {
   }, [count, ]);
   //fooが変わるたびにuseEffectの処理が走る。ただし、アンマウントの処理も同時に呼ばれ、再度マウントされるという判定なので注意
 
+  const handleChange = useCallback((e) => {
+    if (e.target.value.length > 5) {{
+      alert("5文字以内");
+      return;
+    }}
+    setText(e.target.value.trim());
+  }, []);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -50,8 +65,10 @@ export default function Home() {
       </Head>
       <Header/>
 
-      <h1>{count}</h1>
+      {isShow ? <h1>{count}</h1> : null}
       <button onClick={handleClick}>進化する</button>
+      <button onClick={ handleDisplay}><h3>{isShow ? "隠す" : "表示する" }</h3></button>
+      <input type="text" value={text} onChange={handleChange}/>
 
       <Main page="index" />
 
