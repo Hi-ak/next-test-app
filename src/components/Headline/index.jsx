@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "src/components/Header/Header.module.scss";
+import classes from "src/components/Headline/Headline.module.scss";
 
 export function Headline(props) {
   return ( //react component = <>
@@ -13,7 +13,7 @@ export function Headline(props) {
         { props.children }
       </p>
 
-      <button onClick={props.onClick}>進化する</button>
+      
     </div>
   )
 }
