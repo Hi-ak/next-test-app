@@ -6,7 +6,7 @@ import { Footer } from 'src/components/Footer';
 
 import { Main } from 'src/components/Main';
 import { Header } from 'src/components/Header';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 
 
@@ -16,15 +16,15 @@ export default function Home() {
 
   
   //煩雑になる場合にはfunctionの中に書く。(useCallbackで再生成を避ける)
-  // const handleClick = useCallback((e) => {
-  //   // console.log(e.target.href);
-  //   // e.preventDefault();
+  const handleClick = useCallback((e) => {
+    // console.log(e.target.href);
+    // e.preventDefault();
     
-  //   setFoo(foo => foo + 1); //foo + 1だと2で止まっちゃった
-  //   setFoo(foo => foo + 1); //foo + 1だと2で止まっちゃった
+    setFoo(foo => foo + 1); //foo + 1だと2で止まっちゃった
+    setFoo(foo => foo + 1); //foo + 1だと2で止まっちゃった
     
-  //   // alert(foo);
-  // }, []);
+    // alert(foo);
+  }, []);
 
   console.log(foo);
 
