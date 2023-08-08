@@ -6,17 +6,27 @@ import { Footer } from 'src/components/Footer';
 
 import { Main } from 'src/components/Main';
 import { Header } from 'src/components/Header';
-import { useCallback, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 
 
 export default function Home() {
-  const foo = 1;
+
+  const [foo, setFoo] = useState(1); //Arrayに [foo, setFoo] が入ってるだけ
+
+  
   //煩雑になる場合にはfunctionの中に書く。(useCallbackで再生成を避ける)
-  const handleClick = useCallback((e) => {
-    console.log(e.target.href);
-    e.preventDefault();
-    alert(foo);
-  }, []);
+  // const handleClick = useCallback((e) => {
+  //   // console.log(e.target.href);
+  //   // e.preventDefault();
+    
+  //   setFoo(foo => foo + 1); //foo + 1だと2で止まっちゃった
+  //   setFoo(foo => foo + 1); //foo + 1だと2で止まっちゃった
+    
+  //   // alert(foo);
+  // }, []);
+
+  console.log(foo);
 
   //Homeがマウントされた時に実行される
   useEffect(() => {
@@ -36,7 +46,8 @@ export default function Home() {
       </Head>
       <Header/>
 
-      <a href="/about" onClick={handleClick}>進化する</a>
+      <h1>{foo}</h1>
+      <button onClick={handleClick}>進化する</button>
 
       <Main page="index" />
 
