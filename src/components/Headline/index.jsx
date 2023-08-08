@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./Headline.module.scss";
+import classes from "src/components/Header/Header.module.scss";
 
 export function Headline(props) {
   return ( //react component = <>

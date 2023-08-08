@@ -1,4 +1,4 @@
-import classes from "./Footer.module.scss";
+import classes from "src/components/Footer/Footer.module.scss";
 export function Footer() {
   return (
     <footer className={classes.footer}>

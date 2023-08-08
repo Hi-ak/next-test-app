@@ -1,4 +1,4 @@
-import classes from "./Header.module.scss";
+import classes from "src/components/Header/Header.module.scss";
 import Link from "next/link";
 export function Header() {
   return (
