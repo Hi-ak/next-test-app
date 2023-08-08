@@ -12,32 +12,36 @@ import { useCallback, useEffect, useState } from 'react';
 
 export default function Home() {
 
-  const [foo, setFoo] = useState(1); //Arrayに [foo, setFoo] が入ってるだけ
+  const [count, setCount] = useState(1); //Arrayに [foo, setFoo] が入ってるだけ
 
   
   //煩雑になる場合にはfunctionの中に書く。(useCallbackで再生成を避ける)
   const handleClick = useCallback((e) => {
     // console.log(e.target.href);
     // e.preventDefault();
+    console.log(count);
+    if (count < 10) {
+      setCount(cnt => cnt + 1); //foo + 1だと2で止まっちゃった
+    }
     
-    setFoo(foo => foo + 1); //foo + 1だと2で止まっちゃった
-    setFoo(foo => foo + 1); //foo + 1だと2で止まっちゃった
+    //setCount(cnt => cnt + 1);
     
     // alert(foo);
-  }, []);
-
-  console.log(foo);
+  }, [count, ]); //ここにcountを入れないとずっとuseCallbackの中身のcコードは変わらない
 
   //Homeがマウントされた時に実行される
   useEffect(() => {
-    console.log("mount");
+    console.log(`mount: ${count}`);
+    //console.log("foo");
     document.body.style.backgroundColor = "lightblue";
 
     return () => {
-      console.log("unmount");
+      console.log(`unmount: ${count}`);
+      //console.log("fuga");
       document.body.style.backgroundColor = "";
     }
-  }, []);
+  }, [count, ]);
+  //fooが変わるたびにuseEffectの処理が走る。ただし、アンマウントの処理も同時に呼ばれ、再度マウントされるという判定なので注意
 
   return (
     <div className={styles.container}>
@@ -46,7 +50,7 @@ export default function Home() {
       </Head>
       <Header/>
 
-      <h1>{foo}</h1>
+      <h1>{count}</h1>
       <button onClick={handleClick}>進化する</button>
 
       <Main page="index" />
