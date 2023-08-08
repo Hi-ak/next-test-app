@@ -6,8 +6,17 @@ import { Footer } from 'src/components/Footer';
 
 import { Main } from 'src/components/Main';
 import { Header } from 'src/components/Header';
+import { useCallback } from 'react';
+
 
 export default function Home() {
+  const foo = 1;
+  //煩雑になる場合にはfunctionの中に書く。(useCallbackで再生成を避ける)
+  const handleClick = useCallback((e) => {
+    console.log(e.target.href);
+    e.preventDefault();
+    alert(foo);
+  }, []);
   return (
     <div className={styles.container}>
       <Head>
@@ -15,7 +24,11 @@ export default function Home() {
       </Head>
       <Header/>
 
+      <a href="/about" onClick={handleClick}>進化する</a>
+
       <Main page="index" />
+
+
 
       <Footer />
 
