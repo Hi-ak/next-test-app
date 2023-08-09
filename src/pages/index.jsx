@@ -24,7 +24,7 @@ export default function Home() {
     // e.preventDefault();
     console.log(count);
     if (count < 10) {
-      setCount(cnt => cnt + 1); //foo + 1だと2で止まっちゃった
+      setCount(prevCount => prevCount + 1); //foo + 1だと2で止まっちゃった
     }
     
     //setCount(cnt => cnt + 1);
@@ -33,7 +33,7 @@ export default function Home() {
   }, [count, ]); //ここにcountを入れないとずっとuseCallbackの中身のcコードは変わらない
 
   const handleDisplay = useCallback(() => {
-    setIsShow(isShow => !isShow);
+    setIsShow(prevIsShow => !prevIsShow);
   }, []);
 
   //Homeがマウントされた時に実行される
