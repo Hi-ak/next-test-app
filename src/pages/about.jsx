@@ -5,7 +5,16 @@ import styles from 'src/styles/Home.module.css';
 import { Main } from 'src/components/Main';
 import { Header } from 'src/components/Header';
 
-export default function Home() {
+import { useCounter } from 'src/hooks/useCounter';
+import { useInputArray } from 'src/hooks/useInputArray';
+import { useBgLightblue } from 'src/hooks/useBgLightblue';
+
+export default function About() {
+
+  const { count, isShow, handleClick, handleDisplay} = useCounter();
+  const {text, array, handleChange, handleAdd} = useInputArray();
+  useBgLightblue(); 
+
   return (
     <div className={styles.container}>
       <Head>

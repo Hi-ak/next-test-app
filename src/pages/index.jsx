@@ -6,75 +6,25 @@ import { Footer } from 'src/components/Footer';
 
 import { Main } from 'src/components/Main';
 import { Header } from 'src/components/Header';
-import { useCallback, useEffect, useState } from 'react';
+
+import { useCounter } from 'src/hooks/useCounter';
+import { useInputArray } from 'src/hooks/useInputArray';
+import { useBgLightblue } from 'src/hooks/useBgLightblue';
+
+
+
 
 
 
 export default function Home() {
+  //React関数はuseから始める
+  //Componentは自由度が低いが、Custom hooksはUIに小さい変更を加えたりできる
+  const { count, isShow, handleClick, handleDisplay} = useCounter();
+  const {text, array, handleChange, handleAdd} = useInputArray();
 
-  const [count, setCount] = useState(1); //Arrayに [foo, setFoo] が入ってるだけ
-  const [text, setText] = useState("");
-  const [isShow, setIsShow] = useState(true);
-  const [array, setArray] = useState([1, 2, 3]);
-
-  console.log(text);
-  
-  //煩雑になる場合にはfunctionの中に書く。(useCallbackで再生成を避ける)
-  const handleClick = useCallback((e) => {
-    // console.log(e.target.href);
-    // e.preventDefault();
-    console.log(count);
-    if (count < 10) {
-      setCount(prevCount => prevCount + 1); //foo + 1だと2で止まっちゃった
-    }
-    
-    //setCount(cnt => cnt + 1);
-    
-    // alert(foo);
-  }, [count, ]); //ここにcountを入れないとずっとuseCallbackの中身のcコードは変わらない
-
-  const handleDisplay = useCallback(() => {
-    setIsShow(prevIsShow => !prevIsShow);
-  }, []);
-
-  const handleAdd = useCallback((e) => {
-    setArray((prevArray) => {
-      if (prevArray.some(item => item === text)) { //itemの中にtextと同じものがあったら
-        alert("don't input the same txt.")
-        return prevArray;
-      }
-      //prevArray.push(1) としても、assignされてるreference_idが変わらないので、再レンダリングされない
-      //const newArray = [...prevArray, prevArray.pop() + 1]; //スプレッド構文
-      
-      //const newArray = [...prevArray, text];
-      //return newArray //イミュータブルにしないとだめ
-
-      return [...prevArray, text]
-    })
-  }, [text]); //ここにtextを入れて監視
-
-  //Homeがマウントされた時に実行される
-  useEffect(() => {
-    console.log(`mount: ${count}`);
-    //console.log("foo");
-    document.body.style.backgroundColor = "lightblue";
-
-    return () => {
-      console.log(`unmount: ${count}`);
-      //console.log("fuga");
-      document.body.style.backgroundColor = "";
-    }
-  }, [count, ]);
   //fooが変わるたびにuseEffectの処理が走る。ただし、アンマウントの処理も同時に呼ばれ、再度マウントされるという判定なので注意
-
-  const handleChange = useCallback((e) => {
-    if (e.target.value.length > 5) {{
-      alert("5文字以内");
-      return;
-    }}
-    setText(e.target.value.trim());
-  }, []);
-
+  useBgLightblue(); 
+  
   return (
     <div className={styles.container}>
       <Head>
